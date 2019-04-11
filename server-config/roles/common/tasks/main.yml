@@ -1,0 +1,10 @@
+---
+- name: Update the cache of the system's package manager when it is older than 1 hour
+  apt:
+    update_cache: yes
+    cache_valid_time: 3600
+
+- name: Upgrade all packages and Autoremove unused dependency packages
+  apt:
+    upgrade: dist
+    autoremove: yes

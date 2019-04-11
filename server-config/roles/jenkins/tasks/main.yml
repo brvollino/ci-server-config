@@ -1,0 +1,51 @@
+---
+- name: Add Jenkins APT key
+  apt_key:
+    url: https://pkg.jenkins.io/debian/jenkins.io.key
+
+- name: Add Jenkins repository
+  apt_repository:
+    repo: deb https://pkg.jenkins.io/debian-stable binary/
+    state: present
+
+- name: Install JDK 8
+  apt:
+    name: openjdk-8-jdk
+    state: latest
+
+- name: Install Jenkins
+  apt:
+    name: jenkins
+    state: present
+
+- name: Set Jenkins port to 8500
+  lineinfile:
+    path: /etc/default/jenkins
+    regexp: '^HTTP_PORT='
+    line: 'HTTP_PORT=8500'
+  register: changePort
+
+- name: Closes Jenkins port in the firewall
+  ufw:
+    rule: allow
+    port: 8500
+    state: reloaded
+    delete: true
+
+- name: Restart Jenkins
+  service :
+    name: jenkins
+    state: restarted
+  when: changePort.changed
+
+- name: Configure NGINX reverse proxy
+  template:
+    src: jenkins.conf.j2
+    dest: /etc/nginx/conf.d/jenkins.conf
+  register: changedProxy
+
+- name: Reload NGINX
+  service:
+    name: nginx
+    state: reloaded
+  when: changedProxy.changed

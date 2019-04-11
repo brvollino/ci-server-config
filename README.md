@@ -1,14 +1,14 @@
 # challenge-laa
 Solution for a Log Access Analytics technical challenge
 
-# Configuring the development server with Ansible
+# Configuring the continuous integration server
 
-The server-config folder contains the Ansible playbooks used to configure the Jenkins server.
+The server-config folder contains the Ansible playbooks that configure the continuous integration server (a.k.a. "Jenkins machine").
 
-To use it on the managed machine, you must install Python 2, as Ansible depends on it:
+You must install Python 2 in the managed machine, in order to be able to configure it with Ansible:
 
 apt-get install python
 
-Then to configure the server:
+Then configure the server:
 
 ansible-playbook -i hosts --user root development-server.yml

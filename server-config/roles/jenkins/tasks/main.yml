@@ -27,7 +27,7 @@
 
 - name: Closes Jenkins port in the firewall
   ufw:
-    rule: allow
+    rule: deny
     port: 8500
     state: reloaded
     delete: true

@@ -3,11 +3,13 @@
   hosts: continuous-integration-server
   remote_user: root
   roles:
-     - common
-     - server
-     - web-server
-     - jenkins
-     - hashicorp-toolbox
+     #- common
+     #- server
+     #- docker
+     #- web-server
+     #- jenkins
+     #- hashicorp-toolbox
+     - nexus
   vars:
     server_domain: vollino.com
 

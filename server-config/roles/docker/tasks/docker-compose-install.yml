@@ -1,0 +1,15 @@
+---
+- name: Install python-pip
+  apt:
+    name: python-pip
+    state: present
+
+- name: Install python setuptools
+  apt:
+    name: python-setuptools
+    state: latest
+
+- name: Install docker-compose
+  pip:
+    name: docker-compose
+    state: latest

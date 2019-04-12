@@ -8,3 +8,8 @@
   apt:
     upgrade: dist
     autoremove: yes
+
+- name: Install unzip
+  apt:
+    name: unzip
+    state: latest

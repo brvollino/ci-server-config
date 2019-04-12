@@ -7,6 +7,7 @@
      - server
      - web-server
      - jenkins
+     - hashicorp-toolbox
   vars:
     server_domain: vollino.com
 

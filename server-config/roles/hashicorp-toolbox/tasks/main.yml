@@ -1,3 +1,5 @@
 ---
 - name: Install Packer
-  include: install-packer.yml
+  apt:
+    name: packer
+    state: latest

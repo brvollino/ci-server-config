@@ -49,3 +49,13 @@
     name: nginx
     state: reloaded
   when: changedProxy.changed
+
+- name: Create SSH key for Jenkins
+  command: ssh-keygen -t rsa -b 4096 -f ~/.ssh/id_rsa -C "jenkins@vollino.com" -N ""
+  become: yes
+  become_user: jenkins
+  args:
+    creates: ~/.ssh/id_rsa
+
+- name: Install build tools
+  include: install-build-tools.yml

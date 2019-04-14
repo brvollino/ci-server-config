@@ -2,3 +2,8 @@
   apt:
     name: gradle
     state: latest
+
+- name: Install openjdk-11-jdk
+  apt:
+    name: openjdk-11-jdk
+    state: latest
